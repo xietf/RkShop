@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rkshop.dao.ShopOrderMapper">
+
+	<resultMap id="BaseResultMap"
+		type="com.rkshop.entity.ShopOrder">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="order_sn" jdbcType="VARCHAR" property="orderSn" />
+		<result column="add_time" jdbcType="TIMESTAMP"
+			property="addTime" />
+		<result column="user_name" jdbcType="VARCHAR"
+			property="userName" />
+		<result column="province" jdbcType="VARCHAR"
+			property="province" />
+		<result column="city" jdbcType="VARCHAR" property="city" />
+		<result column="area" jdbcType="VARCHAR" property="area" />
+		<result column="address" jdbcType="VARCHAR" property="address" />
+		<result column="phone" jdbcType="VARCHAR" property="phone" />
+		<result column="email" jdbcType="VARCHAR" property="email" />
+		<result column="code" jdbcType="VARCHAR" property="code" />
+		<result column="shop_state" jdbcType="INTEGER"
+			property="shopState" />
+		<result column="user_id" jdbcType="INTEGER" property="userId" />
+		<result column="total_money" jdbcType="DECIMAL"
+			property="totalMoney" />
+		<result column="remark" jdbcType="LONGVARCHAR"
+			property="remark" />
+		<association property="shopOrderGoods"
+			javaType="shopOrderGoods">
+			<result column="b_id" property="id" />
+			<result column="goods_id" property="goodsId" />
+			<result column="goods_img" property="goodsImg" />
+			<result column="goods_name" property="goodsName" />
+			<result column="goods_sn" property="goodsSn" />
+			<result column="order_id" property="orderId" />
+		</association>
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id, order_sn, add_time, user_name, province, city, area,
+		address,
+		phone, email, code, shop_state, user_id, total_money, remark
+	</sql>
+
+	<select id="selectbytowtable" resultMap="BaseResultMap">
+		select
+
+		a.id,
+		a.order_sn,
+		a.add_time,
+		a.user_name,
+		a.province,
+		a.city, area,
+		a.address,
+		a.phone,
+		a.email,
+		a.code,
+		a.shop_state,
+		a.user_id,
+		a.total_money,
+		a.remark,
+		b.id as b_id,
+		b.goods_id,
+		b.goods_img,
+		b.goods_name,
+		b.goods_sn
+		b.order_id
+		
+		from shop_order a
+		inner join shop_order_goods b
+		<where>
+			a.order_sn = b.order_id
+			<if test="id != null">
+				and id = #{id,jdbcType=INTEGER}
+			</if>
+			<if test="orderSn != null">
+				and order_sn = #{orderSn,jdbcType=VARCHAR}
+			</if>
+			<if test="ordersn != null">
+				and order_sn like #{ordersn,jdbcType=VARCHAR}
+			</if>
+			<if test="addTime != null">
+				and add_time = #{addTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="userName != null">
+				and user_name = #{userName,jdbcType=VARCHAR}
+			</if>
+			<if test="province != null">
+				and province = #{province,jdbcType=VARCHAR}
+			</if>
+			<if test="city != null">
+				and city = #{city,jdbcType=VARCHAR}
+			</if>
+			<if test="area != null">
+				and area = #{area,jdbcType=VARCHAR}
+			</if>
+			<if test="address != null">
+				and address = #{address,jdbcType=VARCHAR}
+			</if>
+			<if test="phone != null">
+				and phone = #{phone,jdbcType=VARCHAR}
+			</if>
+			<if test="email != null">
+				and email = #{email,jdbcType=VARCHAR}
+			</if>
+			<if test="code != null">
+				and code = #{code,jdbcType=VARCHAR}
+			</if>
+			<if test="shopState != null">
+				and shop_state = #{shopState,jdbcType=INTEGER}
+			</if>
+			<if test="userId != null">
+				and user_id = #{userId,jdbcType=INTEGER}
+			</if>
+			<if test="totalMoney != null">
+				and total_money = #{totalMoney,jdbcType=DECIMAL}
+			</if>
+			<if test="remark != null">
+				and remark = #{remark,jdbcType=LONGVARCHAR}
+			</if>
+		</where>
+	</select>
+
+	<select id="select" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from shop_order
+		<where>
+			1=1
+			<if test="id != null">
+				and id = #{id,jdbcType=INTEGER}
+			</if>
+			<if test="orderSn != null">
+				and order_sn = #{orderSn,jdbcType=VARCHAR}
+			</if>
+			<if test="ordersn != null">
+				and order_sn like #{ordersn,jdbcType=VARCHAR}
+			</if>
+			<if test="addTime != null">
+				and add_time = #{addTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="userName != null">
+				and user_name = #{userName,jdbcType=VARCHAR}
+			</if>
+			<if test="province != null">
+				and province = #{province,jdbcType=VARCHAR}
+			</if>
+			<if test="city != null">
+				and city = #{city,jdbcType=VARCHAR}
+			</if>
+			<if test="area != null">
+				and area = #{area,jdbcType=VARCHAR}
+			</if>
+			<if test="address != null">
+				and address = #{address,jdbcType=VARCHAR}
+			</if>
+			<if test="phone != null">
+				and phone = #{phone,jdbcType=VARCHAR}
+			</if>
+			<if test="email != null">
+				and email = #{email,jdbcType=VARCHAR}
+			</if>
+			<if test="code != null">
+				and code = #{code,jdbcType=VARCHAR}
+			</if>
+			<if test="shopState != null">
+				and shop_state = #{shopState,jdbcType=INTEGER}
+			</if>
+			<if test="userId != null">
+				and user_id = #{userId,jdbcType=INTEGER}
+			</if>
+			<if test="totalMoney != null">
+				and total_money = #{totalMoney,jdbcType=DECIMAL}
+			</if>
+			<if test="remark != null">
+				and remark = #{remark,jdbcType=LONGVARCHAR}
+			</if>
+		</where>
+	</select>
+
+	<insert id="insert" parameterType="com.rkshop.entity.ShopOrder">
+		insert into shop_order
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="orderSn != null">
+				order_sn,
+			</if>
+			<if test="addTime != null">
+				add_time,
+			</if>
+			<if test="userName != null">
+				user_name,
+			</if>
+			<if test="province != null">
+				province,
+			</if>
+			<if test="city != null">
+				city,
+			</if>
+			<if test="area != null">
+				area,
+			</if>
+			<if test="address != null">
+				address,
+			</if>
+			<if test="phone != null">
+				phone,
+			</if>
+			<if test="email != null">
+				email,
+			</if>
+			<if test="code != null">
+				code,
+			</if>
+			<if test="shopState != null">
+				shop_state,
+			</if>
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="totalMoney != null">
+				total_money,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="orderSn != null">
+				#{orderSn,jdbcType=VARCHAR},
+			</if>
+			<if test="addTime != null">
+				#{addTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="userName != null">
+				#{userName,jdbcType=VARCHAR},
+			</if>
+			<if test="province != null">
+				#{province,jdbcType=VARCHAR},
+			</if>
+			<if test="city != null">
+				#{city,jdbcType=VARCHAR},
+			</if>
+			<if test="area != null">
+				#{area,jdbcType=VARCHAR},
+			</if>
+			<if test="address != null">
+				#{address,jdbcType=VARCHAR},
+			</if>
+			<if test="phone != null">
+				#{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="email != null">
+				#{email,jdbcType=VARCHAR},
+			</if>
+			<if test="code != null">
+				#{code,jdbcType=VARCHAR},
+			</if>
+			<if test="shopState != null">
+				#{shopState,jdbcType=INTEGER},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=INTEGER},
+			</if>
+			<if test="totalMoney != null">
+				#{totalMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=LONGVARCHAR},
+			</if>
+		</trim>
+	</insert>
+
+	<update id="update" parameterType="com.rkshop.entity.ShopOrder">
+		update shop_order
+		<set>
+			<if test="orderSn != null">
+				order_sn = #{orderSn,jdbcType=VARCHAR},
+			</if>
+			<if test="addTime != null">
+				add_time = #{addTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="userName != null">
+				user_name = #{userName,jdbcType=VARCHAR},
+			</if>
+			<if test="province != null">
+				province = #{province,jdbcType=VARCHAR},
+			</if>
+			<if test="city != null">
+				city = #{city,jdbcType=VARCHAR},
+			</if>
+			<if test="area != null">
+				area = #{area,jdbcType=VARCHAR},
+			</if>
+			<if test="address != null">
+				address = #{address,jdbcType=VARCHAR},
+			</if>
+			<if test="phone != null">
+				phone = #{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="email != null">
+				email = #{email,jdbcType=VARCHAR},
+			</if>
+			<if test="code != null">
+				code = #{code,jdbcType=VARCHAR},
+			</if>
+			<if test="shopState != null">
+				shop_state = #{shopState,jdbcType=INTEGER},
+			</if>
+			<if test="userId != null">
+				user_id = #{userId,jdbcType=INTEGER},
+			</if>
+			<if test="totalMoney != null">
+				total_money = #{totalMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=LONGVARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+
+	<delete id="delete" parameterType="java.lang.Integer">
+		delete from shop_order
+		where id
+		= #{id,jdbcType=INTEGER}
+	</delete>
+
+</mapper>

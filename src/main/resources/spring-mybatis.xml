@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+	
+	<!-- 开启自动装配【类上使用注解，自动注册IOC容器中,并且开启DI【依赖关系】】 -->
+	<context:component-scan base-package="com.rkshop" />
+	<!-- 开启Aop注解支持 -->
+	<aop:aspectj-autoproxy />
+	<!-- 配置druid连接池 -->
+	<bean init-method="init" id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close">
+		<!-- jdbc驱动 -->
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<!-- 数据库连接 -->
+		<property name="url" value="jdbc:mysql://localhost:3306/rk_shop?characterEncoding=UTF-8" />
+		<!-- 用户名 -->
+		<property name="username" value="root" />
+		<!-- 密码 -->
+		<property name="password" value="19980202wo" />
+		<!-- 连接对象初始化值 -->
+		<property name="initialSize" value="50" />
+		<!-- 连接对象最大值 -->
+		<property name="maxActive" value="200" />
+	</bean>
+
+	<!-- 创建SqlSessionFactory对象 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!--自动设置别名 -->
+		<property name="typeAliasesPackage" value="com.rkshop.entity" />
+		<!-- 设置分页插件 -->
+		<property name="plugins">
+			<list>
+				<bean class="com.github.pagehelper.PageInterceptor">
+					<property name="properties">
+						<value>offsetAsPageNum=false</value>
+					</property>
+				</bean>
+			</list>
+		</property>
+		<!-- 自动注册sql映射文件 -->
+		<property name="mapperLocations" value="classpath:com/rkshop/dao/*.xml" />
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	<!-- mybatis自动扫描映射配置 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<!-- 自动扫描映射接口 -->
+		<property name="basePackage" value="com.rkshop.dao" />
+		<!-- 使用sqlSessionFactory -->
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+	</bean>
+
+	<!-- 创建事务管理对象 -->
+	<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<tx:advice id="txAdive" transaction-manager="txManager">
+		<tx:attributes>
+			<tx:method name="save*" propagation="REQUIRED" read-only="false" />
+			<tx:method name="insert*" propagation="REQUIRED" read-only="false" />
+			<tx:method name="update*" propagation="REQUIRED" read-only="false" />
+			<tx:method name="delete*" propagation="REQUIRED" read-only="false" />
+			<tx:method name="midfy*" propagation="REQUIRED" read-only="false" />
+			<tx:method name="*" propagation="SUPPORTS" read-only="true" />
+		</tx:attributes>
+	</tx:advice>
+
+	<!-- aop事务拦截 -->
+	<aop:config>
+		<!-- 切入点 -->
+		<aop:pointcut expression="execution(* com.rkshop.service.imple.*.*(..))" id="pointcut" />
+		<!-- 绑定切入点和事务通知 -->
+		<aop:advisor advice-ref="txAdive" pointcut-ref="pointcut" />
+	</aop:config>
+	
+</beans>

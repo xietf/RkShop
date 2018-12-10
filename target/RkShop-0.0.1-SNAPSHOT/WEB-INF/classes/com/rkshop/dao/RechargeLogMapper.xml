@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rkshop.dao.RechargeLogMapper">
+	
+	<resultMap id="BaseResultMap" type="com.rkshop.entity.RechargeLog">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="user_id" jdbcType="INTEGER" property="userId" />
+		<result column="recharge_sn" jdbcType="VARCHAR" property="rechargeSn" />
+		<result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+		<result column="money" jdbcType="DECIMAL" property="money" />
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		id, user_id, recharge_sn, add_time, money
+	</sql>
+	
+	<select id="select" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from recharge_log
+		<where>
+			1=1
+			<if test="id != null">
+				and id = #{id,jdbcType=INTEGER}
+			</if>
+			<if test="userId != null">
+				and user_id = #{userId,jdbcType=INTEGER}
+			</if>
+			<if test="rechargeSn != null">
+				and recharge_sn like #{rechargeSn,jdbcType=VARCHAR}
+			</if>
+			<if test="addTime != null">
+				and add_time = #{addTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="money != null">
+				and money = #{money,jdbcType=DECIMAL}
+			</if>
+		</where> 
+	</select>
+	
+	<insert id="insert" parameterType="com.rkshop.entity.RechargeLog">
+		insert into recharge_log
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="rechargeSn != null">
+				recharge_sn,
+			</if>
+			<if test="addTime != null">
+				add_time,
+			</if>
+			<if test="money != null">
+				money,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=INTEGER},
+			</if>
+			<if test="rechargeSn != null">
+				#{rechargeSn,jdbcType=VARCHAR},
+			</if>
+			<if test="addTime != null">
+				#{addTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="money != null">
+				#{money,jdbcType=DECIMAL},
+			</if>
+		</trim>
+	</insert>
+	
+	<update id="update" parameterType="com.rkshop.entity.RechargeLog">
+		update recharge_log
+		<set>
+			<if test="userId != null">
+				user_id = #{userId,jdbcType=INTEGER},
+			</if>
+			<if test="rechargeSn != null">
+				recharge_sn = #{rechargeSn,jdbcType=VARCHAR},
+			</if>
+			<if test="addTime != null">
+				add_time = #{addTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="money != null">
+				money = #{money,jdbcType=DECIMAL},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	
+	<delete id="delete" parameterType="java.lang.Integer">
+		delete from recharge_log
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	
+</mapper>

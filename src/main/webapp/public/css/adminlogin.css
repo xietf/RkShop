@@ -1,0 +1,79 @@
+body{ margin: 0px;padding: 0px;background: url("../images/adminloginbg.jpg");background-size:cover;
+}
+.login-main{
+    margin: 0 auto;
+    width:350px;
+    height: 330px;
+    border: solid 1px #eee;
+    background: #fff;
+    margin-top: 8%;
+    box-shadow:0px 0px 3px 1px rgba(9, 8, 8, 0.21);
+}
+.login-header{
+    height: 40px;
+    line-height: 40px;
+    border-bottom: solid 1px #eee;
+    text-indent: 5px;
+    font-size: 17px;
+    font-weight: 500;
+    color: #888;
+}
+.item-box{
+    border: solid 1px #dfdfdf;
+    height: 40px;
+    width: 320px;
+    margin: 0 auto;
+    margin-top: 12px;
+    overflow: hidden;
+}
+.item-box input[type='text']{
+    border: 0px;
+    width: 270px;
+    height: 37px;
+    line-height: 37px;
+    outline:none
+}
+.img{
+    margin-left: 10px;
+    vertical-align: middle;
+    border: 0px;}
+
+
+.item-box1{
+    border: solid 1px #dfdfdf;
+    height: 40px;
+    width: 160px;
+    display: inline-block;
+    float: left;
+}
+.item-box1 input[type='text']{
+    border: 0px;
+    width: 115px;
+    height: 37px;
+    outline:none
+}
+.item-code-box{
+    width: 320px;
+    margin: 0 auto;
+    margin-top: 12px;
+    overflow: hidden;
+}
+.code{
+    height: 42px;
+    border: 0px;
+    vertical-align: middle;
+    width: 150px;
+    display: inline-block;
+    float: left;
+}
+.btn{
+    display: inline-block;
+    width: 100%;
+    background: #6296ea;
+    color: #fff;
+    height: 40px;
+    line-height: 40px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+}

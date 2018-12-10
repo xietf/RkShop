@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rkshop.dao.VipUserMapper">
+	
+	<resultMap id="BaseResultMap" type="com.rkshop.entity.VipUser">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="username" jdbcType="VARCHAR" property="username" />
+		<result column="password" jdbcType="VARCHAR" property="password" />
+		<result column="phone" jdbcType="VARCHAR" property="phone" />
+		<result column="email" jdbcType="VARCHAR" property="email" />
+		<result column="recharge_money" jdbcType="DECIMAL" property="rechargeMoney" />
+		<result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+		<result column="user_img" jdbcType="VARCHAR" property="userImg" />
+		<result column="is_state" jdbcType="INTEGER" property="isState" />
+		<result column="last_login_time" jdbcType="TIMESTAMP" property="lastLoginTime" />
+		<result column="last_ip" jdbcType="VARCHAR" property="lastIp" />
+		<result column="remark" jdbcType="LONGVARCHAR" property="remark" />
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		id, username, password, phone, email, recharge_money, add_time,
+		user_img, is_state, last_login_time, last_ip, remark
+	</sql>
+	
+	<select id="select" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from vip_user
+		<where>
+			1=1
+			<if test="id != null">
+				and id = #{id,jdbcType=INTEGER}
+			</if>
+			<if test="username != null">
+				and username like #{username,jdbcType=VARCHAR}
+			</if>
+			<if test="password != null">
+				and password = #{password,jdbcType=VARCHAR}
+			</if>
+			<if test="phone != null">
+				and phone = #{phone,jdbcType=VARCHAR}
+			</if>
+			<if test="email != null">
+				and email = #{email,jdbcType=VARCHAR}
+			</if>
+			<if test="rechargeMoney != null">
+				and recharge_money = #{rechargeMoney,jdbcType=DECIMAL}
+			</if>
+			<if test="addTime != null">
+				and add_time = #{addTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="userImg != null">
+				and user_img = #{userImg,jdbcType=VARCHAR}
+			</if>
+			<if test="isState != null">
+				and is_state = #{isState,jdbcType=INTEGER}
+			</if>
+			<if test="lastLoginTime != null">
+				and last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="lastIp != null">
+				and last_ip = #{lastIp,jdbcType=VARCHAR}
+			</if>
+			<if test="remark != null">
+				and remark = #{remark,jdbcType=LONGVARCHAR}
+			</if>
+		</where> 
+	</select>
+	
+	<insert id="insert" parameterType="com.rkshop.entity.VipUser">
+		insert into vip_user
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="username != null">
+				username,
+			</if>
+			<if test="password != null">
+				password,
+			</if>
+			<if test="phone != null">
+				phone,
+			</if>
+			<if test="email != null">
+				email,
+			</if>
+			<if test="rechargeMoney != null">
+				recharge_money,
+			</if>
+			<if test="addTime != null">
+				add_time,
+			</if>
+			<if test="userImg != null">
+				user_img,
+			</if>
+			<if test="isState != null">
+				is_state,
+			</if>
+			<if test="lastLoginTime != null">
+				last_login_time,
+			</if>
+			<if test="lastIp != null">
+				last_ip,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="username != null">
+				#{username,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				#{password,jdbcType=VARCHAR},
+			</if>
+			<if test="phone != null">
+				#{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="email != null">
+				#{email,jdbcType=VARCHAR},
+			</if>
+			<if test="rechargeMoney != null">
+				#{rechargeMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="addTime != null">
+				#{addTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="userImg != null">
+				#{userImg,jdbcType=VARCHAR},
+			</if>
+			<if test="isState != null">
+				#{isState,jdbcType=INTEGER},
+			</if>
+			<if test="lastLoginTime != null">
+				#{lastLoginTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="lastIp != null">
+				#{lastIp,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=LONGVARCHAR},
+			</if>
+		</trim>
+	</insert>
+	
+	<update id="update" parameterType="com.rkshop.entity.VipUser">
+		update vip_user
+		<set>
+			<if test="username != null">
+				username = #{username,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				password = #{password,jdbcType=VARCHAR},
+			</if>
+			<if test="phone != null">
+				phone = #{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="email != null">
+				email = #{email,jdbcType=VARCHAR},
+			</if>
+			<if test="rechargeMoney != null">
+				recharge_money = #{rechargeMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="addTime != null">
+				add_time = #{addTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="userImg != null">
+				user_img = #{userImg,jdbcType=VARCHAR},
+			</if>
+			<if test="isState != null">
+				is_state = #{isState,jdbcType=INTEGER},
+			</if>
+			<if test="lastLoginTime != null">
+				last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="lastIp != null">
+				last_ip = #{lastIp,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=LONGVARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	
+	<delete id="delete" parameterType="java.lang.Integer">
+		delete from vip_user
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	
+</mapper>

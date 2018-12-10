@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rkshop.dao.GoodsMapper">
+
+	<resultMap id="BaseResultMap" type="com.rkshop.entity.Goods">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="goods_name" jdbcType="VARCHAR" property="goodsName" />
+		<result column="goods_img" jdbcType="VARCHAR" property="goodsImg" />
+		<result column="goods_sn" jdbcType="VARCHAR" property="goodsSn" />
+		<result column="market_price" jdbcType="DECIMAL" property="marketPrice" />
+		<result column="sell_price" jdbcType="DECIMAL" property="sellPrice" />
+		<result column="goods_number" jdbcType="INTEGER" property="goodsNumber" />
+		<result column="is_on_sale" jdbcType="INTEGER" property="isOnSale" />
+		<result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+		<result column="click_count" jdbcType="INTEGER" property="clickCount" />
+		<result column="is_new" jdbcType="INTEGER" property="isNew" />
+		<result column="catalog_id" jdbcType="INTEGER" property="catalogId" />
+		<result column="is_hot" jdbcType="INTEGER" property="isHot" />
+		<result column="description" jdbcType="LONGVARCHAR" property="description" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id, goods_name, goods_img, goods_sn, market_price, sell_price,
+		goods_number, is_on_sale,
+		add_time, click_count, is_new, catalog_id, is_hot, description
+	</sql>
+
+	<select id="select" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from goods
+		<where>
+			1=1
+			<if test="id != null">
+				and id = #{id,jdbcType=INTEGER}
+			</if>
+			<if test="goodsName != null">
+				and goods_name like #{goodsName,jdbcType=VARCHAR}
+			</if>
+			<if test="goodsImg != null">
+				and goods_img = #{goodsImg,jdbcType=VARCHAR}
+			</if>
+			<if test="goodsSn != null">
+				and goods_sn = #{goodsSn,jdbcType=VARCHAR}
+			</if>
+			<if test="marketPrice != null">
+				and market_price = #{marketPrice,jdbcType=DECIMAL}
+			</if>
+			<if test="sellPrice != null">
+				and sell_price = #{sellPrice,jdbcType=DECIMAL}
+			</if>
+			<if test="goodsNumber != null">
+				and goods_number = #{goodsNumber,jdbcType=INTEGER}
+			</if>
+			<if test="isOnSale != null">
+				and is_on_sale = #{isOnSale,jdbcType=INTEGER}
+			</if>
+			<if test="addTime != null">
+				and add_time = #{addTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="clickCount != null">
+				and click_count = #{clickCount,jdbcType=INTEGER}
+			</if>
+			<if test="isNew != null">
+				and is_new = #{isNew,jdbcType=INTEGER}
+			</if>
+			<if test="catalogId != null">
+				and catalog_id = #{catalogId,jdbcType=INTEGER}
+			</if>
+			<if test="isHot != null">
+				and is_hot = #{isHot,jdbcType=INTEGER}
+			</if>
+			<if test="description != null">
+				and description = #{description,jdbcType=LONGVARCHAR}
+			</if>
+			<if test="pricemin != null and pricemax != null">
+				and sell_price between #{pricemin} and #{pricemax} 
+			</if>
+			<if test="pricemin != null and pricemax == null">
+				and sell_price >= #{pricemin}
+			</if>
+			<if test="zonghe == 1">
+				order by click_count
+			</if>
+			<if test="zonghe == 2">
+				order by sell_price desc
+			</if>
+			<if test="zonghe == 3">
+				order by sell_price asc
+			</if>
+			<if test="zonghe == null">
+				order by add_time
+			</if>
+		</where>
+	</select>
+	
+	<insert id="insert" parameterType="com.rkshop.entity.Goods">
+		insert into goods
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="goodsName != null">
+				goods_name,
+			</if>
+			<if test="goodsImg != null">
+				goods_img,
+			</if>
+			<if test="goodsSn != null">
+				goods_sn,
+			</if>
+			<if test="marketPrice != null">
+				market_price,
+			</if>
+			<if test="sellPrice != null">
+				sell_price,
+			</if>
+			<if test="goodsNumber != null">
+				goods_number,
+			</if>
+			<if test="isOnSale != null">
+				is_on_sale,
+			</if>
+			<if test="addTime != null">
+				add_time,
+			</if>
+			<if test="clickCount != null">
+				click_count,
+			</if>
+			<if test="isNew != null">
+				is_new,
+			</if>
+			<if test="catalogId != null">
+				catalog_id,
+			</if>
+			<if test="isHot != null">
+				is_hot,
+			</if>
+			<if test="description != null">
+				description,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="goodsName != null">
+				#{goodsName,jdbcType=VARCHAR},
+			</if>
+			<if test="goodsImg != null">
+				#{goodsImg,jdbcType=VARCHAR},
+			</if>
+			<if test="goodsSn != null">
+				#{goodsSn,jdbcType=VARCHAR},
+			</if>
+			<if test="marketPrice != null">
+				#{marketPrice,jdbcType=DECIMAL},
+			</if>
+			<if test="sellPrice != null">
+				#{sellPrice,jdbcType=DECIMAL},
+			</if>
+			<if test="goodsNumber != null">
+				#{goodsNumber,jdbcType=INTEGER},
+			</if>
+			<if test="isOnSale != null">
+				#{isOnSale,jdbcType=INTEGER},
+			</if>
+			<if test="addTime != null">
+				#{addTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="clickCount != null">
+				#{clickCount,jdbcType=INTEGER},
+			</if>
+			<if test="isNew != null">
+				#{isNew,jdbcType=INTEGER},
+			</if>
+			<if test="catalogId != null">
+				#{catalogId,jdbcType=INTEGER},
+			</if>
+			<if test="isHot != null">
+				#{isHot,jdbcType=INTEGER},
+			</if>
+			<if test="description != null">
+				#{description,jdbcType=LONGVARCHAR},
+			</if>
+		</trim>
+	</insert>
+
+	<update id="update" parameterType="com.rkshop.entity.Goods">
+		update goods
+		<set>
+			<if test="goodsName != null">
+				goods_name = #{goodsName,jdbcType=VARCHAR},
+			</if>
+			<if test="goodsImg != null">
+				goods_img = #{goodsImg,jdbcType=VARCHAR},
+			</if>
+			<if test="goodsSn != null">
+				goods_sn = #{goodsSn,jdbcType=VARCHAR},
+			</if>
+			<if test="marketPrice != null">
+				market_price = #{marketPrice,jdbcType=DECIMAL},
+			</if>
+			<if test="sellPrice != null">
+				sell_price = #{sellPrice,jdbcType=DECIMAL},
+			</if>
+			<if test="goodsNumber != null">
+				goods_number = #{goodsNumber,jdbcType=INTEGER},
+			</if>
+			<if test="isOnSale != null">
+				is_on_sale = #{isOnSale,jdbcType=INTEGER},
+			</if>
+			<if test="addTime != null">
+				add_time = #{addTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="clickCount != null">
+				click_count = #{clickCount,jdbcType=INTEGER},
+			</if>
+			<if test="isNew != null">
+				is_new = #{isNew,jdbcType=INTEGER},
+			</if>
+			<if test="catalogId != null">
+				catalog_id = #{catalogId,jdbcType=INTEGER},
+			</if>
+			<if test="isHot != null">
+				is_hot = #{isHot,jdbcType=INTEGER},
+			</if>
+			<if test="description != null">
+				description = #{description,jdbcType=LONGVARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+
+	<delete id="delete" parameterType="java.lang.Integer">
+		delete from goods
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+
+</mapper>

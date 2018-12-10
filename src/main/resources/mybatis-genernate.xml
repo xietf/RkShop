@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+	
+	<!-- 上下文配置 配置生成的代码的规则 【sql映射文件、 接口、 实体类】 -->
+	<context id="DB2Tables" targetRuntime="MyBatis3">
+		
+		<!--配置数据库连接地址 -->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://localhost:3306/rk_shop?characterEncoding=UTF-8"
+			userId="root" password="19980202wo">
+		</jdbcConnection>
+		
+		<!-- forceBigDecimals 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer true，把JDBC 
+			DECIMAL 和 NUMERIC 类型解析为java.math.BigDecimal -->
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<!--生成实体类的配置 targetPackage生成后的路径 targetProject生成到项目的那个目录 -->
+		<javaModelGenerator targetPackage="com.rkshop.entity"
+			targetProject="./src/main/java">
+			
+			<property name="enableSubPackages" value="true" />   <!-- enableSubPackages:是否让schema作为包的后缀 -->
+			<property name="trimStrings" value="true" />   <!-- 从数据库返回的值被清理前后的空格 -->
+			
+		</javaModelGenerator>
+		
+		<!--生成映射文件的配置 targetPackage生成后的路径 targetProject生成到项目的那个目录 -->
+		<sqlMapGenerator targetPackage="com.rkshop.dao"
+			targetProject="./src/main/java">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+		
+		<!--生成Mapper接口配置 targetPackage生成后的路径 targetProject生成到项目的那个目录 -->
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="com.rkshop.dao" targetProject="./src/main/java">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+
+		<!-- 需要生成的表 tableName 需要生成的表名称 domainObjectName 生成后类名称 -->
+		<table tableName="admin_user" domainObjectName="User"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"></table>
+		
+		<table tableName="goods" domainObjectName="Goods"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"></table>
+		
+		<table tableName="goods_catalog" domainObjectName="GoodsCatalog"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"></table>
+		
+		<table tableName="news" domainObjectName="News"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"></table>
+		
+		<table tableName="news_catalog" domainObjectName="NewsCatalog"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"></table>
+		
+		<table tableName="recharge_log" domainObjectName="RechargeLog"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"></table>
+		
+		<table tableName="shop_ad" domainObjectName="ShopAd"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"></table>
+		
+		<table tableName="shop_order" domainObjectName="ShopOrder"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"></table>
+			
+		<table tableName="shop_order_goods" domainObjectName="ShopOrderGoods"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"></table>
+		
+		<table tableName="user_address" domainObjectName="UserAddress"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"></table>
+		
+		<table tableName="user_cart_log" domainObjectName="UserCartLog"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"></table>
+		
+		<table tableName="vip_user" domainObjectName="VipUser"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"></table>
+		
+	</context>
+</generatorConfiguration>

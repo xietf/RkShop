@@ -1,0 +1,104 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+.header-top{
+    width: 100%;
+    height: 50px;
+    background: #57e980;
+    position: relative;
+}
+.header-top .logo{
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    height: 50px;
+    font-size: 25px;
+    font-weight: bold;
+    color: #fff;
+    line-height: 50px;
+    text-indent: 15px;
+}
+.header-top .right{
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    height: 50px;
+    line-height: 50px;
+    padding-right: 10px;
+    color: #fff;
+    font-size: 13px;
+}
+.header-top .right  a{text-decoration: none;color: #fff;}
+.header-top .right>img{
+    vertical-align: middle;
+    width: 15px;
+    height: 15px;
+}
+.menus-left{
+    background: #fff;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    top:50px;
+    width: 230px;
+    border-right: solid 1px #e3e2e2;
+    overflow-y: auto;
+}
+.menus-top{
+    width: 100%;
+   text-align: center;
+    padding-bottom: 10px;
+}
+.menus-top p{margin: 0px;padding: 0px;}
+.img-re{
+  width: 80px;
+    margin-top: 10px;
+}
+.xitong-p{
+    color: #616161;
+    font-size: 13px;
+}
+.xttong-admin{
+    color: #616161;
+    font-size: 13px;
+    margin-bottom: 5px!important;
+    font-weight: 600;
+}
+.menus-main{
+    width: 100%;
+    border-top: solid 1px #eee;
+}
+.menus-main ul{margin: 0px;padding: 0px;list-style: none;}
+.menus-main ul li{ height: 40px; line-height: 40px;}
+.menus-main ul li a{ text-indent: 5px; text-decoration: none;color: #393b38; font-size: 13px;display: inline-block; width: 100%;border-bottom: solid 1px #eee;}
+.menus-main .dicon{ color:#393b38;width: 30px;text-align: center; font-size: 13px;display: inline-block;}
+.right-jiantou{float: right;display: inline-block!important;line-height: 30px !important;height: 30px!important;;vertical-align: middle!important;margin-right: 10px;}
+.conter-main{ right:0px;position: fixed;top: 50px;left: 231px;bottom: 0px;background: #fff;}
+.iframe{ width: 100%;height: 100%;border: 0px;margin: 0px;padding: 0px;overflow-y: auto;}
+/*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/  
+::-webkit-scrollbar  
+{  
+    width: 16px;  
+    height: 16px;  
+    background-color: #fffefe;  
+  width:4px;
+}  
+  
+/*定义滚动条轨道 内阴影+圆角*/  
+::-webkit-scrollbar-track  
+{  
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);  
+    border-radius: 10px;  
+    background-color: #fffefe;  
+    width:4px;
+}  
+  
+/*定义滑块 内阴影+圆角*/  
+::-webkit-scrollbar-thumb  
+{  
+    border-radius: 10px;  
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);  
+    width:4px;
+}
+
